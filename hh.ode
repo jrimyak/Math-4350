@@ -1,0 +1,26 @@
+#  hh.ode 1.9
+
+p iapp=0
+p vna=50,vk=-77,vl=-54.4,gna=120,gk=36,gl=0.3 
+
+am(v)=.1*(v+40)/(1-exp(-(v+40)/10))
+bm(v)=4*exp(-(v+65)/18)
+ah(v)=.07*exp(-(v+65)/20)
+bh(v)=1/(1+exp(-(v+35)/10))
+an(v)=.01*(v+55)/(1-exp(-(v+55)/10))
+bn(v)=.125*exp(-(v+65)/80)
+
+v'= -gna*m^3*h*(v-vna)-gk*n^4*(v-vk)-gl*(v-vl)+iapp
+m'=am(v)*(1-m)-bm(v)*m
+h'=ah(v)*(1-h)-bh(v)*h
+n'=an(v)*(1-n)-bn(v)*n
+
+aux ina=gna*m^3*h*(v-vna)
+aux ik=gk*n^4*(v-vk)
+
+i v=-65,m=.05,h=0.6,n=.3
+
+@ dt=.05,total=100,meth=qualrk,xp=t,yp=v,xlo=0,xhi=100,ylo=-90,yhi=70.,bound=500001,maxstor=5000001
+
+done
+

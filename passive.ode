@@ -1,0 +1,9 @@
+p er=-70,g=.2,iapp=0
+
+v'=-g*(v-er)+iapp
+
+i v=-65
+
+@ dt=.05,total=20,meth=qualrk,xp=t,yp=v,xlo=0,xhi=20,ylo=-80,yhi=-40.,bound=5000,maxstor=50000
+
+done

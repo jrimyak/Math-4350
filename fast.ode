@@ -1,0 +1,16 @@
+
+p z=0
+p v1=-1.2,v2=18,v3=2.,v4=30.,gca=4.4,gk=8.0,gl=2.0,vk=-84,vl=-60
+p vca=120.0,Iapp=120,gkca=.75,phi=.04,eps=.002,mu=.016667
+minf(v)=.5*(1.+tanh((v-v1)/v2))
+winf(v)=.5*(1.+tanh((v-v3)/v4))
+tauw(v)=1./cosh((v-v3)/(2*v4))
+
+#z(c)=1/(1.0+c)
+v'= (-(gca*minf(v)*(v-vca)+gk*w*(v-vk)+gl*(v-vl)+gkca*(1-z)*(v-vk))+Iapp)
+w'= 20*phi*(winf(v)-w)/tauw(v)
+#c'= 20*eps*(-mu*gca*minf(v)*(v-vca)-c) 
+i  v=-20,w=.0
+
+@ dt=.05,total=300,meth=qualrk,xp=t,yp=v,xlo=0,xhi=300,ylo=-60,yhi=40.,bound=500001,maxstor=50000
+done

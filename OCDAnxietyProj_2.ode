@@ -1,0 +1,19 @@
+
+p m=1, n=1.4, a1=2, mu=0.1, b1=0.4, b2=1.2, lambda=0.1, nA=1.4
+
+f(X, delta) = (1/(exp(-mu*(X-delta)) + 1)) - (1/2)
+lma(X, delta) = (1/(exp(-lambda*(X-delta)) + 1)) - (1/2)
+
+O' = (-n*O) + (m*A) + (m*T1) + f(O, delta)
+C' = (m*O) - (n*C) + (m*T1) + f(C, delta)
+A' = (-a1*O) - (a1*C) - (nA*A) + (m*T1) + (m*delta) + f(A, delta)
+T1' = (m*O) + (m*C) + (m*A) - (n*T1) + (m*S)  + f(T1, delta) + 1
+S' = (b1*O) + (b2*A) + (m*T1) - (n*S) - (m*delta) + lma(S, delta)
+delta' = m*(O + C +A +T1 +S) - (n*delta) 
+
+i C=-60,A=-60
+
+@ dt=.05,total=100,meth=qualrk,xp=t,yp=v,xlo=0,xhi=100,ylo=-90,yhi=70.,bound=500001,maxstor=5000001
+
+done
+

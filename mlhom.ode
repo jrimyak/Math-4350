@@ -1,0 +1,19 @@
+p phi=.23,gca=4,v3=12,v4=17.4,eca=120,ek=-84,el=-60
+p gk=8,gl=2,v1=-1.2,v2=18,c=20,iapp=20
+
+% current functions
+minf(v)=.5*(1.+tanh((v-v1)/v2))
+ninf(v)=.5*(1.+tanh((v-v3)/v4))
+taun(v)=1/cosh((v-v3)/(2*v4))
+
+
+v'=(-gl*(v-el)-gk*n*(v-ek)-gca*minf(v)*(v-eca)+iapp)/c
+n'=phi*(ninf(v)-n)/taun(v)
+
+i v=-60,n=0.1
+
+@ dt=.05,total=200,meth=qualrk,xp=t,yp=v,xlo=0,xhi=200,ylo=-90,yhi=50.,bound=500001,maxstor=5000001
+
+
+
+done
